@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "anvilmagic",
+	"version": "${version}",
+	"name": "AnvilMagic",
+	"description": "客户端模组：拆分附魔书，获得1级经验，零UI侵入",
+	"authors": [
+		"AnvilMagic-Agent"
+	],
+	"contact": {
+		"homepage": "https://github.com/AnvilMagic/AnvilMagic",
+		"sources": "https://github.com/AnvilMagic/AnvilMagic"
+	},
+	"license": "MIT",
+	"icon": "assets/anvilmagic/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.anvilmagic.AnvilMagicClient"
+		]
+	},
+	"mixins": [
+		{
+			"config": "anvilmagic.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
