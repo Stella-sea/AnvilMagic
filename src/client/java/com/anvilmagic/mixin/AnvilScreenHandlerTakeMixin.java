@@ -70,10 +70,10 @@ public class AnvilScreenHandlerTakeMixin {
             handler.getSlot(0).setStack(ItemStack.EMPTY);
         }
         
-        // 给予玩家1级经验
-        player.addExperience(7); // 1级经验约等于7经验点
+        // 给予玩家净消耗1级经验（约10经验点）
+        player.addExperience(-10); // 扣除10经验点，相当于1级
         
-        AnvilMagicClient.LOGGER.info("玩家 {} 成功拆分附魔书，获得1级经验。剩余附魔: {}", 
+        AnvilMagicClient.LOGGER.info("玩家 {} 成功拆分附魔书，净消耗1级经验。剩余附魔: {}", 
             player.getName().getString(), enchantmentSet.size() - 1);
     }
 }
