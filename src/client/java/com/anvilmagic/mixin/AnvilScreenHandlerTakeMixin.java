@@ -1,6 +1,7 @@
 package com.anvilmagic.mixin;
 
 import com.anvilmagic.AnvilMagicClient;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,8 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Set;
 
 @Mixin(AnvilScreenHandler.class)
 public class AnvilScreenHandlerTakeMixin {
@@ -38,17 +38,27 @@ public class AnvilScreenHandlerTakeMixin {
     }
     
     private void processSplitting(PlayerEntity player, AnvilScreenHandler handler, ItemStack originalBook) {
-        Map<RegistryEntry<Enchantment>, Integer> originalEnchantments = 
+        ItemEnchantmentsComponent originalEnchantments = 
             EnchantmentHelper.getEnchantments(originalBook);
+        Set<RegistryEntry<Enchantment>> enchantmentSet = originalEnchantments.getEnchantments();
         
-        if (originalEnchantments.size() <= 1) {
+        if (enchantmentSet.size() <= 1) {
             return;
         }
         
         // 创建剩余的附魔书
-        Map<RegistryEntry<Enchantment>, Integer> remainingEnchantments = new HashMap<>(originalEnchantments);
-        RegistryEntry<Enchantment> removedEnchantment = remainingEnchantments.keySet().iterator().next();
-        remainingEnchantments.remove(removedEnchantment);
+        ItemEnchantmentsComponent.Builder builder = new ItemEnchantmentsComponent.Builder(ItemEnchantmentsComponent.DEFAULT);
+        boolean first = true;
+        for (RegistryEntry<Enchantment> enchantment : enchantmentSet) {
+            if (first) {
+                first = false;
+                continue; // 跳过第一个附魔（已经被拆出）
+            }
+            int level = originalEnchantments.getLevel(enchantment);
+            builder.add(enchantment, level);
+        }
+        
+        ItemEnchantmentsComponent remainingEnchantments = builder.build();
         
         // 如果还有剩余附魔，更新左槽的物品
         if (!remainingEnchantments.isEmpty()) {
@@ -64,6 +74,6 @@ public class AnvilScreenHandlerTakeMixin {
         player.addExperience(7); // 1级经验约等于7经验点
         
         AnvilMagicClient.LOGGER.info("玩家 {} 成功拆分附魔书，获得1级经验。剩余附魔: {}", 
-            player.getName().getString(), remainingEnchantments.size());
+            player.getName().getString(), enchantmentSet.size() - 1);
     }
 }
