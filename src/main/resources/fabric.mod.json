@@ -3,13 +3,13 @@
 	"id": "anvilmagic",
 	"version": "${version}",
 	"name": "AnvilMagic",
-	"description": "客户端模组：拆分附魔书，获得1级经验，零UI侵入",
+	"description": "使用铁砧拆解附魔，消耗1级经验，零UI侵入",
 	"authors": [
-		"AnvilMagic-Agent"
+		"Stella-sea"
 	],
 	"contact": {
-		"homepage": "https://github.com/AnvilMagic/AnvilMagic",
-		"sources": "https://github.com/AnvilMagic/AnvilMagic"
+		"homepage": "https://github.com/Stella-sea/AnvilMagic",
+		"sources": "https://github.com/Stella-sea/AnvilMagic"
 	},
 	"license": "MIT",
 	"icon": "assets/anvilmagic/icon.png",

@@ -14,7 +14,6 @@ public class SplittingState {
      */
     public static void setJustCompletedSplitting(boolean value) {
         justCompletedSplitting = value;
-        System.out.println("[AnvilMagic] 设置静态标记 justCompletedSplitting = " + value);
     }
     
     /**

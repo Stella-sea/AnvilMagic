@@ -2,36 +2,57 @@
 
 ![AnvilMagic封面](https://image.pollinations.ai/prompt/minecraft%20anvil%20with%20magical%20glowing%20enchanted%20books%20floating%20around%20it%20pixelart%20style%20vibrant%20purple%20and%20golden%20effects?width=800&height=400&nologo=true)
 
-[![模组版本](https://img.shields.io/badge/版本-v1.0.1-brightgreen)](https://github.com/AnvilMagic/AnvilMagic/releases)
+[![模组版本](https://img.shields.io/badge/版本-v1.1.0-brightgreen)](https://github.com/AnvilMagic/AnvilMagic/releases)
 [![MC版本](https://img.shields.io/badge/MC-1.21.1-blue)](https://minecraft.net/)
 [![Fabric](https://img.shields.io/badge/Fabric-✓-yellow)](https://fabricmc.net/)
 [![许可证](https://img.shields.io/badge/许可证-MIT-green)](./LICENSE)
 
-> **客户端模组：拆分附魔书，净消耗1级经验，零UI侵入** 🎯
+> **客户端模组：拆分附魔书和工具附魔，净消耗1级经验，零UI侵入** 🎯
 
 ## ✨ 功能特性
 
+### 📚 附魔书拆分
 - 🔍 **零UI侵入** - 无需额外界面，直接在原版铁砧操作
 - 📚 **智能拆分** - 将多附魔书拆分为单个附魔书
-- ⚡ **经验消耗** - 每次拆分净消耗1级经验（约10经验点）
+- 🔁 **循环拆分** - 支持连续拆分直到所有附魔都被分开
+
+### ⚔️ 工具拆附魔 🆕
+- 🔧 **全类型支持** - 支持所有原版工具、武器、盔甲
+- 🔌 **模组兼容** - 自动支持所有遵循标准附魔系统的模组物品
+- 🛡️ **保持属性** - 保持工具原有耐久度和所有其他属性
+- 🪄 **单附魔支持** - 工具单个附魔也可拆分，留下无附魔版本
+
+### ⚡ 其他特性
 - 🎮 **客户端模组** - 仅需客户端安装，服务器无需同步
-- 🔧 **Mixin技术** - 深度集成原版机制，稳定可靠
+- ⚙️ **Mixin技术** - 深度集成原版机制，稳定可靠
+- ⚡ **经验消耗** - 每次拆分净消耗1级经验（约10经验点）
 
 ## 🎯 使用方法
 
+### 📚 附魔书拆分
 1. **准备材料**：
    - 左槽：多附魔的附魔书
-   - 右槽：普通书籍（或留空）
+   - 右槽：普通书籍
 
 2. **执行拆分**：
    - 铁砧会显示拆分后的单个附魔书
    - 消耗1级经验
    - 取出结果后，原附魔书变为剩余附魔
 
-3. **结果说明**：
-   - 获得：包含第一个附魔的新书
-   - 剩余：原书变为去除第一个附魔后的书
-   - 消耗：净消耗1级经验
+### ⚔️ 工具拆附魔 🆕
+1. **准备材料**：
+   - 左槽：附魔工具/武器/盔甲（支持所有原版和模组物品）
+   - 右槽：普通书籍
+
+2. **执行拆分**：
+   - 铁砧会显示拆出的附魔书
+   - 消耗1级经验
+   - 取出结果后，左槽保留剩余附魔的工具（或无附魔版本）
+
+### 📋 结果说明
+- **获得**：包含第一个附魔的新书
+- **剩余**：原物品变为去除第一个附魔后的版本
+- **消耗**：净消耗1级经验
 
 ## 🚀 安装指南
 
@@ -41,7 +62,7 @@
 - ✅ Fabric API 0.116.6+1.21.1
 
 ### 安装步骤
-1. 下载最新版本的 [AnvilMagic-1.0.1-1.21.1-client.jar](https://github.com/AnvilMagic/AnvilMagic/releases)
+1. 下载最新版本的 [AnvilMagic-1.1.0-1.21.1-client.jar](https://github.com/AnvilMagic/AnvilMagic/releases)
 2. 将jar文件放入 `.minecraft/mods/` 文件夹
 3. 启动游戏，开始使用！
 
@@ -90,6 +111,8 @@ src/client/java/com/anvilmagic/
 
 | 版本 | 日期 | 更新内容 |
 |------|------|----------|
+| v1.1.0 | 2024-12 | 🆕 **重大更新**：新增工具拆附魔功能，支持所有原版和模组物品 |
+| v1.0.2 | 2024-12 | 修复Mixin时序问题，完善状态管理 |
 | v1.0.1 | 2024-12 | 修正版本兼容性，优化经验逻辑 |
 | v1.0.0 | 2024-12 | 初始版本，实现基础拆分功能 |
 
